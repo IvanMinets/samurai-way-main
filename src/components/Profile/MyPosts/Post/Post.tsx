@@ -1,7 +1,8 @@
 import React from 'react';
 import a from './Post.module.css';
 
-const Post = () => {
+
+const Post = (props:string) => {
     return (
         <div>
             <div className={a.item}>
