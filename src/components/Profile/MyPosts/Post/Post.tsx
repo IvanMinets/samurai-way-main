@@ -1,18 +1,22 @@
 import React from 'react';
 import a from './Post.module.css';
 
+type PostProps = {
+    message : string;
+}
 
-const Post = (props:string) => {
+const Post = (props: PostProps) => {
     return (
         <div>
             <div className={a.item}>
                 <img src="https://avatars.mds.yandex.net/get-kino-vod-films-gallery/28788/47e2fd514411e18b76af786d7417062d/100x64_3" alt="#"/>
-                Post 1
+                {props.message}
             </div>
             <div>
                 <span>like</span>
             </div>
         </div>
+
     )
 }
 export default Post;
