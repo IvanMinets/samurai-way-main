@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom";
 import exp from "constants";
 
 type DialogItemProps = {
-    id: string,
+    id: number,
     name: string
 }
 
@@ -24,10 +24,21 @@ const Message = (props: messageProps) => {
 }
 
 const Dialogs = () => {
+
+    let dialogsData = [
+        {id: 1, name: "Ivan"},
+        {id: 2, name: "Andrey"},
+        {id: 3, name: "Sveta"},
+        {id: 4, name: "Sasha"},
+        {id: 5, name: "Viktor"},
+        {id: 6, name: "Valera"}
+    ]
+
     return (
         <div className={s.dialogs}>
             <div className={s.dialogItems}>
-                <DialogItem id="1" name="Ivan"/>
+                <DialogItem name={dialogsData[0].name} id={dialogsData[0].id}/>
+                <DialogItem name={dialogsData[1].name} id={dialogsData[1].id}/>
                 <DialogItem id="2" name="Andrey"/>
                 <DialogItem id="3" name="Sveta"/>
                 <DialogItem id="4" name="Sasha"/>
@@ -42,6 +53,7 @@ const Dialogs = () => {
                 <Message message="Yo"/>
             </div>
         </div>
-            ) }
+    )
+}
 
 export default Dialogs;
