@@ -7,16 +7,34 @@ import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 
 const App = () => {
+    let dialogs = [
+        {id: 1, name: "Ivan"},
+        {id: 2, name: "Andrey"},
+        {id: 3, name: "Sveta"},
+        {id: 4, name: "Sasha"},
+        {id: 5, name: "Viktor"},
+        {id: 6, name: "Valera"}
+    ]
+    let messages = [
+        {id: 1, message: "Hi"},
+        {id: 2, message: "How is your it-kamasutra"},
+        {id: 3, message: "Yo"},
+        {id: 4, message: "Yo"},
+        {id: 5, message: "Yo"},
+        {id: 6, message: "Yo"}
+    ]
+
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
                 <Navbar/>
                 <div className="app-wrapper-content">
-                    <Route path="/dialogs" render={Dialogs}/>
-                    <Route path="/profile" render={Profile}/>
+                    <Route path="/dialogs" render={()=><Dialogs dialogs = {dialogs} messages={messages}/>}/>
+                    <Route path="/profile" render={()=><Profile />}/>
                 </div>
             </div>
         </BrowserRouter>)
 }
+
 export default App;
