@@ -6,6 +6,7 @@ type PostProps = {
     likesCount: number;
 }
 
+
 const Post = (props: PostProps) => {
     return (
         <div>

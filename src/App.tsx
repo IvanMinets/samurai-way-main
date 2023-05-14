@@ -23,7 +23,10 @@ const App = () => {
         {id: 5, message: "Yo"},
         {id: 6, message: "Yo"}
     ]
-
+    let posts = [
+        {id: 1, message: "Hi, how are you?", likesCount: 12},
+        {id: 2, message: "It is my first post", likesCount: 11},
+    ]
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
@@ -31,7 +34,7 @@ const App = () => {
                 <Navbar/>
                 <div className="app-wrapper-content">
                     <Route path="/dialogs" render={()=><Dialogs dialogs = {dialogs} messages={messages}/>}/>
-                    <Route path="/profile" render={()=><Profile />}/>
+                    <Route path="/profile" render={()=><Profile posts={posts}/>}/>
                 </div>
             </div>
         </BrowserRouter>)
