@@ -7,9 +7,7 @@ import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 
 type AppPropsType = {
-    posts: {id: number, message: string, likesCount: number}[]
-    dialogs: {id: number, name: string}[]
-    messages: {id: number, message: string}[]
+    state: any
 }
 const App = (props: AppPropsType) => {
     return (
@@ -18,8 +16,8 @@ const App = (props: AppPropsType) => {
                 <Header/>
                 <Navbar/>
                 <div className="app-wrapper-content">
-                    <Route path="/dialogs" render={()=><Dialogs dialogs = {props.dialogs} messages={props.messages}/>}/>
-                    <Route path="/profile" render={()=><Profile posts={props.posts}/>}/>
+                    <Route path="/dialogs" render={()=><Dialogs dialogs = {props.state.dialogsPage.dialogs} messages={props.state.dialogsPage.messages}/>}/>
+                    <Route path="/profile" render={()=><Profile posts={props.state.profilePage.posts}/>}/>
                 </div>
             </div>
         </BrowserRouter>)
