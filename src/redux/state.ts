@@ -1,4 +1,4 @@
-
+import {rerenderEntireTree} from "../render";
 type MessageType = {
     id: number
     message: string
@@ -9,7 +9,7 @@ type DialogType = {
 }
 type PostType = {
     id: number
-    message: string | undefined
+    message: string
     likesCount: number
 }
 type ProfilePageType = {
@@ -54,13 +54,15 @@ let state: RootStateType = {
     },
     sidebar: {}
 }
-export let addPost = (postMessage: string | undefined) => {
-    let newPost = {
+
+export let addPost = (postMessage: string) => {
+    let newPost: PostType = {
         id: 5,
         message: postMessage,
         likesCount: 0
     };
     state.profilePage.posts.push(newPost);
+    rerenderEntireTree(state);
 }
 
 export default state;

@@ -3,8 +3,8 @@ import a from './MyPosts.module.css';
 import Post from "./Post/Post";
 
 type MyPostsPropsType = {
-    posts: {id: number, message: string | undefined, likesCount: number}[]
-    addPost: (postMessage: string | undefined) => void
+    posts: {id: number, message: string, likesCount: number}[]
+    addPost: (postMessage: string) => void
 }
 
 const MyPosts = (props: MyPostsPropsType) => {
@@ -14,8 +14,11 @@ const MyPosts = (props: MyPostsPropsType) => {
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 
     const addPost = () => {
-        let text = newPostElement.current?.value
+        let text = newPostElement.current ? newPostElement.current.value : "";
         props.addPost(text);
+        if (newPostElement.current) {
+            newPostElement.current.value = '';
+        }
     }
 
     return (
@@ -23,7 +26,7 @@ const MyPosts = (props: MyPostsPropsType) => {
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea></textarea>
+                    <textarea ref={newPostElement}></textarea>
                 </div>
                 <div>
                     <button onClick={addPost}>Add post</button>
