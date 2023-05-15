@@ -1,4 +1,4 @@
-import React from 'react';
+
 type MessageType = {
     id: number
     message: string
@@ -9,7 +9,7 @@ type DialogType = {
 }
 type PostType = {
     id: number
-    message: string
+    message: string | undefined
     likesCount: number
 }
 type ProfilePageType = {
@@ -53,6 +53,14 @@ let state: RootStateType = {
         ]
     },
     sidebar: {}
+}
+export let addPost = (postMessage: string | undefined) => {
+    let newPost = {
+        id: 5,
+        message: postMessage,
+        likesCount: 0
+    };
+    state.profilePage.posts.push(newPost);
 }
 
 export default state;

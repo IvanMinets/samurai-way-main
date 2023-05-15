@@ -3,7 +3,8 @@ import a from './MyPosts.module.css';
 import Post from "./Post/Post";
 
 type MyPostsPropsType = {
-    posts: {id: number, message: string, likesCount: number}[]
+    posts: {id: number, message: string | undefined, likesCount: number}[]
+    addPost: (postMessage: string | undefined) => void
 }
 
 const MyPosts = (props: MyPostsPropsType) => {
@@ -13,7 +14,8 @@ const MyPosts = (props: MyPostsPropsType) => {
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 
     const addPost = () => {
-        alert(newPostElement.current?.value)
+        let text = newPostElement.current?.value
+        props.addPost(text);
     }
 
     return (
