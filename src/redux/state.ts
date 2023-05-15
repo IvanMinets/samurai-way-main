@@ -21,7 +21,7 @@ type DialogsPageType = {
 }
 type SidebarType = {}
 
-type RootStateType = {
+export type RootStateType = {
     profilePage: ProfilePageType,
     dialogsPage: DialogsPageType,
     sidebar: SidebarType
