@@ -20,7 +20,7 @@ const MyPosts = (props: MyPostsPropsType) => {
             newPostElement.current.value = '';
         }
     }
-    
+
 
     return (
         <div className={a.postsBlock}>
