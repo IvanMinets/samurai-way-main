@@ -20,13 +20,14 @@ const MyPosts = (props: MyPostsPropsType) => {
             newPostElement.current.value = '';
         }
     }
+    
 
     return (
         <div className={a.postsBlock}>
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea ref={newPostElement}></textarea>
+                    <textarea ref={newPostElement} value="it-kamasutra"/>
                 </div>
                 <div>
                     <button onClick={addPost}>Add post</button>
