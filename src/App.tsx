@@ -20,7 +20,7 @@ const App = (props: AppPropsType) => {
                 <Navbar/>
                 <div className="app-wrapper-content">
                     <Route path="/dialogs" render={()=><Dialogs dialogs = {props.state.dialogsPage.dialogs} messages={props.state.dialogsPage.messages}/>}/>
-                    <Route path="/profile" render={()=><Profile posts={props.state.profilePage.posts} addPost={props.addPost}/>}/>
+                    <Route path="/profile" render={()=><Profile posts={props.state.profilePage.posts} addPost={props.addPost} message = {props.state.profilePage.newPostText}/>}/>
                 </div>
             </div>
         </BrowserRouter>)

@@ -5,6 +5,7 @@ import Post from "./Post/Post";
 type MyPostsPropsType = {
     posts: {id: number, message: string, likesCount: number}[]
     addPost: (postMessage: string) => void
+    message: string
 }
 
 const MyPosts = (props: MyPostsPropsType) => {
@@ -20,6 +21,9 @@ const MyPosts = (props: MyPostsPropsType) => {
             newPostElement.current.value = '';
         }
     }
+    const onPostChange = () => {
+
+    }
 
 
     return (
@@ -27,7 +31,7 @@ const MyPosts = (props: MyPostsPropsType) => {
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea ref={newPostElement} value="it-kamasutra"/>
+                    <textarea onChange={onPostChange} ref={newPostElement} value={props.message}/>
                 </div>
                 <div>
                     <button onClick={addPost}>Add post</button>
