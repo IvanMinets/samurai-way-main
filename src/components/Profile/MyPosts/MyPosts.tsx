@@ -4,8 +4,9 @@ import Post from "./Post/Post";
 
 type MyPostsPropsType = {
     posts: {id: number, message: string, likesCount: number}[]
-    addPost: (postMessage: string) => void
+    addPost: () => void
     message: string
+    updateNewPostText: (newText: string) => void
 }
 
 const MyPosts = (props: MyPostsPropsType) => {
@@ -15,14 +16,15 @@ const MyPosts = (props: MyPostsPropsType) => {
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 
     const addPost = () => {
-        let text = newPostElement.current ? newPostElement.current.value : "";
-        props.addPost(text);
+        props.addPost();
         if (newPostElement.current) {
             newPostElement.current.value = '';
         }
+
     }
     const onPostChange = () => {
-
+        let text = newPostElement.current ? newPostElement.current.value : "";
+        props.updateNewPostText(text);
     }
 
 

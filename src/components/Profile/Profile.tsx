@@ -6,8 +6,9 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 type ProfilePropsType = {
     posts: {id: number, message: string , likesCount: number}[]
-    addPost: (postMessage: string) => void
+    addPost: () => void
     message: string
+    updateNewPostText: (newText: string) => void
 }
 
 const Profile = (props: ProfilePropsType) => {
@@ -15,7 +16,7 @@ const Profile = (props: ProfilePropsType) => {
     return (
         <div className={s.hello}>
             <ProfileInfo/>
-            <MyPosts posts={props.posts} addPost={props.addPost} message={props.message}/>
+            <MyPosts posts={props.posts} addPost={props.addPost} message={props.message} updateNewPostText={props.updateNewPostText} />
         </div>
     )
 }
