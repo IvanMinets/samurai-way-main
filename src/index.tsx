@@ -7,7 +7,7 @@ import store from "./redux/state";
 
 export let rerenderEntireTree = (state: any) => {
     ReactDOM.render(
-        <App state={state} addPost={store.addPost.bind(store)} updateNewPostText={store.updateNewPostText.bind(store)}/>,
+        <App store={store} dispatch={store.dispatch.bind(store)}/>,
         document.getElementById('root')
     )
 };

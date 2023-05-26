@@ -32,7 +32,17 @@ export type StoreType = {
     addPost: () => void
     updateNewPostText: (newText: string) => void
     subscribe: (observer: any) => void
+    dispatch: (action: ActionsTypes ) => void
 }
+type AddPostActionType = {
+    type: "ADD-POST"
+}
+type UpdateNewPostTextType = {
+    type: "UPDATE-NEW-POST-TEXT"
+    newText: string
+}
+
+export type ActionsTypes = AddPostActionType | UpdateNewPostTextType;
 
 let store : StoreType = {
     _state: {
