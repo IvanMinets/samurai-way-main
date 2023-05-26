@@ -63,12 +63,18 @@ let store : StoreType = {
         },
         sidebar: {}
     },
-    getState() {
-      return this._state
-    },
     _callSubscriber() {
         console.log('State changed')
     },
+
+    getState() {
+      return this._state
+    },
+    subscribe(observer) {
+        this._callSubscriber = observer;
+    },
+
+
     addPost() {
         let newPost: PostType = {
             id: 5,
@@ -83,8 +89,8 @@ let store : StoreType = {
         this._state.profilePage.newPostText = newText;
         this._callSubscriber(this._state);
     },
-    subscribe(observer) {
-        this._callSubscriber = observer;
+    dispatch(action) {
+
     }
 
 }
