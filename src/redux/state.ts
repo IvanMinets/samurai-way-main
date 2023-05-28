@@ -118,4 +118,16 @@ let store : StoreType = {
 
 }
 
+export const newPostTextAC: any = (text: string) => {
+    return {
+        type: 'UPDATE-NEW-POST-TEXT',
+        newText: text
+    }
+}
+export const addPostAC: any = () => {
+    return {
+        type: 'ADD-POST'
+    }
+}
+
 export default store;
