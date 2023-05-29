@@ -11,10 +11,11 @@ type DialogsPropsType = {
 
 const Dialogs = (props: DialogsPropsType) => {
 
+    let state = props.store.getState().dialogsPage;
 
-    let dialogsElements = props.store._state.dialogsPage.dialogs.map((dialog)=> <DialogItem name={dialog.name} id={dialog.id}/>);
-    let messagesElements = props.store._state.dialogsPage.messages.map((message)=><Message message={message.message}/>);
-    let newMessageBody = props.store._state.dialogsPage.newMessageBody;
+    let dialogsElements = state.dialogs.map((dialog)=> <DialogItem name={dialog.name} id={dialog.id}/>);
+    let messagesElements = state.messages.map((message)=><Message message={message.message}/>);
+    let newMessageBody = state.newMessageBody;
 
     let onSendMessageClick = () => {
         props.store.dispatch(sendMessageAC())
