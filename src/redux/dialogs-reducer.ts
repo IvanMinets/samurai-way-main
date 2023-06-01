@@ -25,7 +25,7 @@ let initState = {
     newMessageBody: ''
 }
 
-export const dialogsReducer = (state: any = initState, action: any) => {
+export const dialogsReducer = (state: any = initState, action: ActionsTypes) => {
     switch (action.type) {
         case 'SEND-MESSAGE':
             let body = state.newMessageBody;
