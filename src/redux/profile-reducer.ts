@@ -1,4 +1,3 @@
-import React from "react";
 type PostType = {
     id: number
     message: string
@@ -9,7 +8,7 @@ export type UpdateNewPostTextType = ReturnType<typeof updateNewPostTextAC>
 
 type ActionsTypes = AddPostActionType | UpdateNewPostTextType;
 
-const profileReducer = (state: any, action: any) =>  {
+const profileReducer = (state: any, action: ActionsTypes) =>  {
     switch (action.type) {
         case 'ADD-POST':
             let newPost: PostType = {
