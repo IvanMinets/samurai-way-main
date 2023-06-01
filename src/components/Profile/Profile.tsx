@@ -3,12 +3,11 @@ import s from './Profile.module.css'
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import {ActionsTypes} from "../../redux/store";
+import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
 
 type ProfilePropsType = {
-    posts: {id: number, message: string , likesCount: number}[]
-    message: string
-    dispatch: (action: ActionsTypes) => void
+    store: any
 }
 
 const Profile = (props: ProfilePropsType) => {
@@ -16,10 +15,7 @@ const Profile = (props: ProfilePropsType) => {
     return (
         <div className={s.hello}>
             <ProfileInfo/>
-            <MyPosts
-                posts={props.posts}
-                message={props.message}
-                dispatch={props.dispatch} />
+            <MyPostsContainer store={props.store} />
         </div>
     )
 }

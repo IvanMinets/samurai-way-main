@@ -1,40 +1,30 @@
 import React from 'react';
-import a from './MyPosts.module.css';
-import Post from "./Post/Post";
 import {addPostAC, updateNewPostTextAC} from "../../../redux/profile-reducer";
-import {ActionsTypes} from "../../../redux/store";
 import MyPosts from "./MyPosts";
 
 type MyPostsPropsType = {
-    posts: {id: number, message: string, likesCount: number}[]
-    message: string
-    dispatch: (action: ActionsTypes) => void
+    store: any
 }
 
 const MyPostsContainer = (props: MyPostsPropsType) => {
 
-    let postsElements = props.posts.map((post)=> <Post message={post.message} likesCount={post.likesCount}/>)
-
-    let newPostElement = React.createRef<HTMLTextAreaElement>();
+    let state = props.store.getState();
 
     const addPost = () => {
-
-        // props.addPost();
-        // if (newPostElement.current) {
-        //     newPostElement.current.value = '';
-        // }
-        props.dispatch(addPostAC());
+        props.store.dispatch(addPostAC());
     }
-    const onPostChange = () => {
-        let text = newPostElement.current ? newPostElement.current.value : "";
-        // props.updateNewPostText(text);
+    const onPostChange = (text: string) => {
         let action = updateNewPostTextAC(text);
-        props.dispatch(action);
+        props.store.dispatch(action);
     }
-
 
     return (
-        <MyPosts posts={} message={} dispatch={}/>
+        <MyPosts
+            updateNewPostText={onPostChange}
+            addPost={addPost}
+            posts={state.profilePage.posts}
+            newPostText={state.profilePage.newPostText}
+        />
     )
 }
 export default MyPostsContainer;

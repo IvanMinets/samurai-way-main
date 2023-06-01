@@ -8,23 +8,26 @@ import {StoreType} from "../../redux/store";
 
 type DialogsPropsType = {
     store: StoreType
+    updateNewMessageBody: (body:any) => void
+    sendMessage: ()=>void
+    dialogsPage: any
 }
 
 const Dialogs = (props: DialogsPropsType) => {
 
-    let state = props.store.getState().dialogsPage;
+    let state = props.dialogsPage;
 
-    let dialogsElements = state.dialogs.map((dialog)=> <DialogItem name={dialog.name} id={dialog.id}/>);
-    let messagesElements = state.messages.map((message)=><Message message={message.message}/>);
+    let dialogsElements = state.dialogs.map((dialog: any)=> <DialogItem name={dialog.name} id={dialog.id}/>);
+    let messagesElements = state.messages.map((message: any)=><Message message={message.message}/>);
     let newMessageBody = state.newMessageBody;
 
     let onSendMessageClick = () => {
-        props.store.dispatch(sendMessageAC())
+        props.sendMessage();
     }
 
     let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) =>{
         let body = e.currentTarget.value;
-        props.store.dispatch(updateNewMessageBodyAC(body))
+        props.updateNewMessageBody(body);
     }
     return (
         <div className={s.dialogs}>
