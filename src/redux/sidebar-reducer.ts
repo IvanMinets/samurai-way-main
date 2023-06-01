@@ -1,6 +1,7 @@
-import React from "react";
 
-export const sidebarReducer = (state: any, action: any) =>  {
+let initState = {}
+
+export const sidebarReducer = (state: any = initState, action: any) =>  {
 
     return state;
 }

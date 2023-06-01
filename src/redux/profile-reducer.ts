@@ -9,7 +9,15 @@ export type UpdateNewPostTextType = ReturnType<typeof updateNewPostTextAC>
 
 type ActionsTypes = AddPostActionType | UpdateNewPostTextType;
 
-const profileReducer = (state: any, action: any) =>  {
+let initState = {
+    posts: [
+        {id: 1, message: "Hi, how are you?", likesCount: 12},
+        {id: 2, message: "It is my first post", likesCount: 11},
+    ],
+    newPostText: 'it-kamasutra.com1'
+}
+
+const profileReducer = (state: any = initState, action: any) =>  {
     switch (action.type) {
         case 'ADD-POST':
             let newPost: PostType = {
