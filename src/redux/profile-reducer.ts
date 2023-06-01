@@ -1,4 +1,3 @@
-import React from "react";
 type PostType = {
     id: number
     message: string
@@ -17,7 +16,7 @@ let initState = {
     newPostText: 'it-kamasutra.com1'
 }
 
-const profileReducer = (state: any = initState, action: any) =>  {
+const profileReducer = (state: any = initState, action: ActionsTypes) =>  {
     switch (action.type) {
         case 'ADD-POST':
             let newPost: PostType = {
