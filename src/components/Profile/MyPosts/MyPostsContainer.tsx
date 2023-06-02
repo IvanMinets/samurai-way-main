@@ -3,7 +3,7 @@ import {addPostAC, updateNewPostTextAC} from "../../../redux/profile-reducer";
 import MyPosts from "./MyPosts";
 
 type MyPostsPropsType = {
-    store: any
+
 }
 
 const MyPostsContainer = (props: MyPostsPropsType) => {
