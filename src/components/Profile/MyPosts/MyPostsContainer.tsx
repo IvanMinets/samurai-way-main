@@ -26,7 +26,6 @@ import {connect} from "react-redux";
 //         </StoreContext.Consumer>
 //     )
 // }
-
 let mapStateToProps = (state: any)=>{
     return {
         posts: state.profilePage.posts,
@@ -39,7 +38,6 @@ let mapDispatchToProps = (dispatch: any) =>{
         updateNewPostText: (text:string)=>{dispatch(updateNewPostTextAC(text))}
     }
 }
-
 
 const MyPostsContainer = connect(mapStateToProps,mapDispatchToProps) (MyPosts);
 
