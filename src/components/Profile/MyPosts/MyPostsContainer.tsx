@@ -11,7 +11,7 @@ const MyPostsContainer = (props: any) => {
 
     return (
         <StoreContext.Consumer>{
-            (store) => {
+            (store: any) => {
                 let state = store.getState();
                 const addPost = () => {
                     store.dispatch(addPostAC());

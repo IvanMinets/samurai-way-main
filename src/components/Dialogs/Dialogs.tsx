@@ -7,7 +7,6 @@ import {StoreType} from "../../redux/store";
 
 
 type DialogsPropsType = {
-    store: StoreType
     updateNewMessageBody: (body:any) => void
     sendMessage: ()=>void
     dialogsPage: any
