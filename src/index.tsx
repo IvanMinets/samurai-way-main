@@ -8,8 +8,8 @@ import {RootStateType} from "./redux/store";
 import {Provider} from "react-redux";
 
 
-
-export let rerenderEntireTree = (state: RootStateType) => {
+//
+// export let rerenderEntireTree = (state: RootStateType) => {
     ReactDOM.render(
         <BrowserRouter>
             <Provider store={store}>
@@ -18,10 +18,10 @@ export let rerenderEntireTree = (state: RootStateType) => {
         </BrowserRouter>,
         document.getElementById('root')
     )
-};
-rerenderEntireTree(store.getState());
-
-store.subscribe(()=>{
-    let state = store.getState();
-    rerenderEntireTree(state)
-});
+// };
+// rerenderEntireTree(store.getState());
+//
+// store.subscribe(()=>{
+//     let state = store.getState();
+//     rerenderEntireTree(state)
+// });
