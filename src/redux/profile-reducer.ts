@@ -13,7 +13,7 @@ let initState = {
         {id: 1, message: "Hi, how are you?", likesCount: 12},
         {id: 2, message: "It is my first post", likesCount: 11},
     ],
-    newPostText: 'it-kamasutra.com1'
+    newPostText: 'it-kamasutra.com'
 }
 
 const profileReducer = (state: any = initState, action: ActionsTypes) =>  {
@@ -24,15 +24,16 @@ const profileReducer = (state: any = initState, action: ActionsTypes) =>  {
                 message: state.newPostText,
                 likesCount: 0
             };
-            let stateCopy = {...state}
-            stateCopy.posts = [...state.posts];
-            stateCopy.posts.push(newPost);
-            stateCopy.newPostText = '';
-            return stateCopy;
+            return {
+                ...state,
+                posts: [...state.posts, newPost],
+                newPostText: ''
+            }
         case 'UPDATE-NEW-POST-TEXT':
-            let stateCopy2 = {...state};
-            stateCopy2.newPostText = action.newText;
-            return stateCopy2;
+            return {
+                ...state,
+                newPostText: action.newText
+            };
     }
     return state;
 }
