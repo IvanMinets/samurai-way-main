@@ -9,10 +9,7 @@ type UsersPropsType = {
     setUsers: (users:Array<userType>) => void
 }
 
-
-
 const Users = (props: UsersPropsType) => {
-
     if (props.users.length === 0) {
         props.setUsers([
                 {
