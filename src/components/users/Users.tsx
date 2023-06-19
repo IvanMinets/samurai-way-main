@@ -1,43 +1,19 @@
 import React from 'react';
 import {userType} from "../../redux/users-reducer";
 import s from './users.module.css'
+import  axios from "axios";
 
 type UsersPropsType = {
-    users: Array<userType>
+    users: Array<any>
     follow: (userId: number) => void
     unfollow: (userId: number) => void
-    setUsers: (users:Array<userType>) => void
+    setUsers: (users: any) => void
 }
 
 const Users = (props: UsersPropsType) => {
     if (props.users.length === 0) {
-        props.setUsers([
-                {
-                    id: 1,
-                    photoUrl: 'https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?w=2000',
-                    followed: false,
-                    fullName: 'Ivan',
-                    status: 'My name is Ivan',
-                    location: {city: 'Minsk', country: 'Belarus'}
-                },
-                {
-                    id: 2,
-                    photoUrl: 'https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?w=2000',
-                    followed: true,
-                    fullName: 'Sasha',
-                    status: 'My name is Sasha',
-                    location: {city: 'Moscow', country: 'Russia'}
-                },
-                {
-                    id: 3,
-                    photoUrl: 'https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?w=2000',
-                    followed: false,
-                    fullName: 'Andrew',
-                    status: 'My name is Andrew',
-                    location: {city: 'Kiev', country: 'Ukraine'}
-                },
-            ]
-        )
+        debugger
+     axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {props.setUsers(response.data.items)});
     }
     return (
         <div>
@@ -45,7 +21,7 @@ const Users = (props: UsersPropsType) => {
                 props.users.map(u => <div key={u.id}>
                     <span>
                         <div>
-                            <img src={u.photoUrl} alt="#" className={s.userPhoto}/>
+                            <img src={u.photos.small != null ? u.photos.small : ""} alt="#" className={s.userPhoto}/>
                         </div>
                         <div>
                             {u.followed
@@ -55,12 +31,12 @@ const Users = (props: UsersPropsType) => {
                     </span>
                     <span>
                         <span>
-                            <div>{u.fullName}</div>
+                            <div>{u.name}</div>
                             <div>{u.status}</div>
                         </span>
                         <span>
-                            <div>{u.location.country}</div>
-                            <div>{u.location.city}</div>
+                            <div>{'u.location.country'}</div>
+                            <div>{'u.location.city'}</div>
                         </span>
                     </span>
                 </div>)
