@@ -3,15 +3,17 @@ import axios from "axios";
 import userPhoto from "../../assets/images/user.jpg";
 import s from "./users.module.css";
 
-type UsersPropsType = {
+interface UsersPropsType  {
     users: Array<any>
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     setUsers: (users: any) => void
 }
 
-class UserC extends React.Component<any, any, any> {
-    getUsers = () => {
+class UserC extends React.Component<UsersPropsType> {
+
+    constructor(props: any) {
+        super(props);
         if (this.props.users.length === 0) {
             axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
                 this.props.setUsers(response.data.items)
@@ -23,8 +25,6 @@ class UserC extends React.Component<any, any, any> {
         return (
 
             <div>
-                <button onClick={this.getUsers}>Get users
-                </button>
                 {
                     this.props.users.map(u => <div key={u.id}>
                     <span>
