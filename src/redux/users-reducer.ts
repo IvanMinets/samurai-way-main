@@ -16,12 +16,12 @@ export type usersType = {
 
 let initState: any = {
     users: [],
-    pageSize: 5,
+    pageSize: 10,
     totalUsersCount: 0,
-    currentPage: 1
+    currentPage: 2
 }
 
-const usersReducers = (state: usersType = initState, action: any) => {
+const  usersReducers = (state: usersType = initState, action: any) => {
     switch (action.type) {
         case 'FOLLOW':
             return {
@@ -44,10 +44,13 @@ const usersReducers = (state: usersType = initState, action: any) => {
                 })
             }
         case 'SET_USERS':
-            return {...state, users: [...state.users, ...action.users]}
+            return {...state, users: action.users}
 
         case 'SET_CURRENT_PAGE' :
             return {...state, currentPage: action.currentPage}
+
+        case 'SET_TOTAL_USERS_COUNT' :
+            return {...state, totalUsersCount: action.totalCount}
         default:
             return state;
     }
@@ -57,5 +60,6 @@ export const followAC = (userId: number) => {return {type: 'FOLLOW', userId: use
 export const unfollowAC = (userId: number) => {return {type: 'UNFOLLOW', userId: userId} as const}
 export const setUsersAC = (users: any) => {return {type: 'SET_USERS', users: users} as const}
 export const setCurrentPageAC = (currentPage: any) => {return {type: 'SET_CURRENT_PAGE', currentPage: currentPage} as const}
+export const setUsersTotalCountAC = (totalCount: any) => {return {type: 'SET_TOTAL_USERS_COUNT', totalCount: totalCount} as const}
 
 export default usersReducers;

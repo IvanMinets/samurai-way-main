@@ -9,6 +9,7 @@ interface UsersPropsType {
     unfollow: (userId: number) => void
     setUsers: (users: any) => void
     setCurrentPage: (currentPage: any) => void
+    setTotalUsersCount: (totalCount: any) => void
     totalUsersCount: any
     pageSize: any
     currentPage: any
@@ -17,23 +18,30 @@ interface UsersPropsType {
 class UserC extends React.Component<UsersPropsType> {
 
     componentDidMount() {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
             .then(response => {
-            this.props.setUsers(response.data.items)
-        });
+                this.props.setUsers(response.data.items)
+                this.props.setTotalUsersCount(response.data.totalCount)
+            });
     }
 
-    onPageChanged = (currentPage: any) => {
-        this.props.setCurrentPage(currentPage)
+    onPageChanged = (pageNumber: any) => {
+        this.props.setCurrentPage(pageNumber)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
+            .then(response => {
+                this.props.setUsers(response.data.items)
+
+            });
     }
 
     render() {
 
-        let pagesCount = Math.ceil(this.props.totalUsersCount /  this.props.pageSize);
+        let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
 
         let pages = [];
+        let slicedPages;
         for (let i = 1; i <= pagesCount; i++) {
-            pages.push(i);
+            pages.push(i)
         }
 
 
@@ -41,7 +49,9 @@ class UserC extends React.Component<UsersPropsType> {
             <div>
                 <div>
                     {pages.map(p => {
-                        return <span onClick={(e)=> {this.onPageChanged(p)}} className={this.props.currentPage === p ? s.selectedPage : ""}>{p}</span>
+                        return <span onClick={(e) => {
+                            this.onPageChanged(p)
+                        }} className={this.props.currentPage === p ? s.selectedPage : ""}>{p}</span>
                     })}
 
                 </div>
