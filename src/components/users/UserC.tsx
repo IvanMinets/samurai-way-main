@@ -3,13 +3,14 @@ import axios from "axios";
 import userPhoto from "../../assets/images/user.jpg";
 import s from "./users.module.css";
 
-interface UsersPropsType  {
+interface UsersPropsType {
     users: Array<any>
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     setUsers: (users: any) => void
     totalUsersCount: any
     pageSize: any
+    currentPage: any
 }
 
 class UserC extends React.Component<UsersPropsType> {
@@ -22,16 +23,20 @@ class UserC extends React.Component<UsersPropsType> {
 
     render() {
 
-        let pagesCount = this.props.totalUsersCount / this.props.pageSize;
+        let pagesCount = Math.ceil(this.props.totalUsersCount /  this.props.pageSize);
+
+        let pages = [];
+        for (let i = 1; i <= pagesCount; i++) {
+            pages.push(i);
+        }
 
         return (
             <div>
                 <div>
-                    <span>1</span>
-                    <span>2</span>
-                    <span>3</span>
-                    <span>4</span>
-                    <span>5</span>
+                    {pages.map(p => {
+                        return <span className={this.props.currentPage === p ? s.selectedPage : ""}>{p}</span>
+                    })}
+
                 </div>
                 {
                     this.props.users.map(u => <div key={u.id}>
@@ -46,7 +51,7 @@ class UserC extends React.Component<UsersPropsType> {
                                     this.props.unfollow(u.id)
                                 }}>Unfollow</button>
                                 : <button onClick={() => {
-                                   this.props.follow(u.id)
+                                    this.props.follow(u.id)
                                 }}>Follow</button>}
                         </div>
                     </span>

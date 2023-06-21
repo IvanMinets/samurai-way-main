@@ -17,7 +17,8 @@ export type usersType = {
 let initState: any = {
     users: [],
     pageSize: 5,
-    totalUsersCount: 0
+    totalUsersCount: 21,
+    currentPage: 1
 }
 
 const usersReducers = (state: usersType = initState, action: any) => {
