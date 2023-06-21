@@ -8,6 +8,8 @@ interface UsersPropsType  {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     setUsers: (users: any) => void
+    totalUsersCount: any
+    pageSize: any
 }
 
 class UserC extends React.Component<UsersPropsType> {
@@ -19,10 +21,13 @@ class UserC extends React.Component<UsersPropsType> {
     }
 
     render() {
+
+        let pagesCount = this.props.totalUsersCount / this.props.pageSize;
+
         return (
             <div>
                 <div>
-                    <span >1</span>
+                    <span>1</span>
                     <span>2</span>
                     <span>3</span>
                     <span>4</span>
