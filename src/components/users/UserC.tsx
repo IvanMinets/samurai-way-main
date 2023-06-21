@@ -8,6 +8,7 @@ interface UsersPropsType {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     setUsers: (users: any) => void
+    setCurrentPage: (currentPage: any) => void
     totalUsersCount: any
     pageSize: any
     currentPage: any
@@ -16,9 +17,14 @@ interface UsersPropsType {
 class UserC extends React.Component<UsersPropsType> {
 
     componentDidMount() {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+            .then(response => {
             this.props.setUsers(response.data.items)
         });
+    }
+
+    onPageChanged = (currentPage: any) => {
+        this.props.setCurrentPage(currentPage)
     }
 
     render() {
@@ -30,11 +36,12 @@ class UserC extends React.Component<UsersPropsType> {
             pages.push(i);
         }
 
+
         return (
             <div>
                 <div>
                     {pages.map(p => {
-                        return <span className={this.props.currentPage === p ? s.selectedPage : ""}>{p}</span>
+                        return <span onClick={(e)=> {this.onPageChanged(p)}} className={this.props.currentPage === p ? s.selectedPage : ""}>{p}</span>
                     })}
 
                 </div>

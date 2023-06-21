@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
 import Users from "./Users";
-import {followAC, setUsersAC, unfollowAC} from "../../redux/users-reducer";
+import {followAC, setCurrentPageAC, setUsersAC, unfollowAC} from "../../redux/users-reducer";
 import UserC from "./UserC";
 
 let mapStateToProps = (state: any) => {
@@ -24,6 +24,9 @@ let mapDispatchToProps = (dispatch: any) => {
         setUsers: (users: any) => {
             dispatch(setUsersAC(users))
         },
+        setCurrentPage: (currentPage: any) => {
+            dispatch(setCurrentPageAC(currentPage))
+        }
     }
 }
 
