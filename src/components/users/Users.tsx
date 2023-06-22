@@ -1,28 +1,35 @@
 import React from 'react';
-import {userType} from "../../redux/users-reducer";
-import s from './users.module.css'
-import axios from "axios";
-import userPhoto from '../../assets/images/user.jpg'
+import s from "./users.module.css";
+import userPhoto from "../../assets/images/user.jpg";
 
 type UsersPropsType = {
     users: Array<any>
-    follow: (userId: number) => void
-    unfollow: (userId: number) => void
-    setUsers: (users: any) => void
+    totalUsersCount: any
+    pageSize: any
+    currentPage: any
+    onPageChanged: any
+    follow: any
+    unfollow: any
 }
 
 const Users = (props: UsersPropsType) => {
-    const getUsers = () => {
-        if (props.users.length === 0) {
-            axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
-                props.setUsers(response.data.items)
-            });
-        }
-    }
-    return (
 
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+    let pages = [];
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(i)
+    }
+
+    return (
         <div>
-            <button onClick={getUsers}>Get users</button>
+            <div>
+                {pages.map(p => {
+                    return <span onClick={(e) => {
+                        props.onPageChanged(p);
+                    }} className={props.currentPage === p ? s.selectedPage : ""}>{p}</span>
+                })}
+
+            </div>
             {
                 props.users.map(u => <div key={u.id}>
                     <span>
@@ -53,7 +60,7 @@ const Users = (props: UsersPropsType) => {
                 </div>)
             }
         </div>
-    );
-};
-
+    )
+        ;
+}
 export default Users;
