@@ -37,9 +37,7 @@ class UserC extends React.Component<UsersPropsType> {
     render() {
 
         let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
-
         let pages = [];
-        let slicedPages;
         for (let i = 1; i <= pagesCount; i++) {
             pages.push(i)
         }
