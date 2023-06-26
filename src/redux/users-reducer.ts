@@ -18,7 +18,8 @@ let initState: any = {
     users: [],
     pageSize: 10,
     totalUsersCount: 0,
-    currentPage: 2
+    currentPage: 2,
+    isFetching: false
 }
 
 const  usersReducers = (state: usersType = initState, action: any) => {
