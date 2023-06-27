@@ -12,7 +12,7 @@ type AppPropsType = {
 }
 
 const App = (props: AppPropsType) => {
-    return (
+    return ( 
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
