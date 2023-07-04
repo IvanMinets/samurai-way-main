@@ -87,7 +87,7 @@ export default connect(mapStateToProps, {
     unfollow: unfollowAC,
     setUsers: setUsersAC,
     setCurrentPage:setCurrentPageAC,
-    setTotalUsersCount: setUsersTotalCountAC,
+    setUsersTotalCount: setUsersTotalCountAC,
     toggleIsFetching: toggleIsFetchingAC,
     toggleFollowingInProgress: toggleFollowingInProgressAC
 })(UsersAPIComponent);

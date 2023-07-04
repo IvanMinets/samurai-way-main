@@ -1,3 +1,5 @@
+import {getUsers} from "../api/api";
+
 export type userLocationType = {
     city: string,
     country: string
@@ -87,13 +89,20 @@ export const setUsersTotalCountAC = (totalCount: any) => {
 export const toggleIsFetchingAC = (isFetching: boolean) => {
     return {type: 'TOGGLE_IS_FETCHING', isFetching: isFetching} as const
 }
-export const toggleFollowingInProgressAC = (isFetching: boolean,userId: any) => {
+export const toggleFollowingInProgressAC = (isFetching: boolean, userId: any) => {
     return {type: 'TOGGLE_IS_FOLLOWING_PROGRESS', isFetching: isFetching, userId} as const
 }
 
 
-const getUsers = (dispatch) => {
+const getUsersThunk = (dispatch: any) => {
+    dispatch(toggleIsFetchingAC(true));
 
+    getUsers(this.props.currentPage, this.props.pageSize)
+        .then(data => {
+            dispatch(toggleIsFetchingAC(false))
+            dispatch(setUsersAC(data.items))
+            dispatch(setUsersTotalCountAC(data.totalCount))
+        });
 }
 
 
