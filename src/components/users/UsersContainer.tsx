@@ -31,7 +31,7 @@ class UsersAPIComponent extends React.Component<UsersPropsType> {
 
     componentDidMount() {
         this.props.toggleIsFetching(true)
-        getUsers()
+        getUsers(this.props.currentPage, this.props.pageSize)
             .then(response => {
                 this.props.toggleIsFetching(false)
                 this.props.setUsers(response.data.items)
