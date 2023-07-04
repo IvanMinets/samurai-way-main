@@ -92,4 +92,9 @@ export const toggleFollowingInProgressAC = (isFetching: boolean,userId: any) => 
 }
 
 
+const getUsers = (dispatch) => {
+
+}
+
+
 export default usersReducers;
