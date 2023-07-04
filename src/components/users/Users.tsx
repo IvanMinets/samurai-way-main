@@ -13,7 +13,7 @@ type UsersPropsType = {
     onPageChanged: any
     follow: any
     unfollow: any
-    followingInProgress: []
+    followingInProgress: Array<any>
     toggleFollowingInProgress: any
 }
 
@@ -47,26 +47,26 @@ const Users = (props: UsersPropsType) => {
                         <div>
                             {u.followed
                                 ? <button disabled={props.followingInProgress.some(id=> id === u.id)} onClick={() => {
-                                    props.toggleFollowingInProgress(true);
+                                    props.toggleFollowingInProgress(true, u.id);
                                     unfollowUser(u.id)
                                         .then(data => {
                                             if (data.resultCode === 0) {
                                                 props.unfollow(u.id);
                                             }
-                                            props.toggleFollowingInProgress(false);
+                                            props.toggleFollowingInProgress(false, u.id);
                                         });
 
 
                                 }}>Unfollow</button>
 
                                 : <button disabled={props.followingInProgress.some(id=> id === u.id)} onClick={() => {
-                                    props.toggleFollowingInProgress(true);
+                                    props.toggleFollowingInProgress(true, u.id);
                                     followUser(u.id)
                                         .then(data => {
                                             if (data.resultCode === 0) {
                                                 props.follow(u.id);
                                             }
-                                            props.toggleFollowingInProgress(false);
+                                            props.toggleFollowingInProgress(false, u.id);
                                         });
 
                                 }}>Follow</button>}

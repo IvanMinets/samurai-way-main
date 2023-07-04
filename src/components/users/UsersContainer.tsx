@@ -23,7 +23,7 @@ interface UsersPropsType {
     toggleIsFetching: (isFetching: boolean) => void
     isFetching: boolean
     toggleFollowingInProgress: any
-    followingInProgress: boolean
+    followingInProgress: Array<any>
     totalUsersCount: any
     pageSize: any
     currentPage: any
@@ -76,7 +76,8 @@ let mapStateToProps = (state: any) =>  {
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress
+        followingInProgress: state.usersPage.followingInProgress,
+        toggleFollowingInProgress: state.usersPage.toggleFollowingInProgress
     }
 }
 
