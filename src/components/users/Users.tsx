@@ -13,7 +13,7 @@ type UsersPropsType = {
     onPageChanged: any
     follow: any
     unfollow: any
-    followingInProgress: boolean
+    followingInProgress: []
     toggleFollowingInProgress: any
 }
 
@@ -46,7 +46,7 @@ const Users = (props: UsersPropsType) => {
                         </div>
                         <div>
                             {u.followed
-                                ? <button disabled={props.followingInProgress} onClick={() => {
+                                ? <button disabled={props.followingInProgress.some(id=> id === u.id)} onClick={() => {
                                     props.toggleFollowingInProgress(true);
                                     unfollowUser(u.id)
                                         .then(data => {
@@ -59,7 +59,7 @@ const Users = (props: UsersPropsType) => {
 
                                 }}>Unfollow</button>
 
-                                : <button disabled={props.followingInProgress} onClick={() => {
+                                : <button disabled={props.followingInProgress.some(id=> id === u.id)} onClick={() => {
                                     props.toggleFollowingInProgress(true);
                                     followUser(u.id)
                                         .then(data => {
