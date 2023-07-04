@@ -9,18 +9,20 @@ export type userType = {
     fullName: string,
     status: string,
     location: userLocationType
+
 }
 export type usersType = {
     users: Array<userType>
+    followingInProgress: Array<any>
 }
 
-let initState: any = {
+let initState = {
     users: [],
     pageSize: 10,
     totalUsersCount: 0,
     currentPage: 2,
     isFetching: true,
-    followingInProgress: false
+    followingInProgress: [2,3,4]
 }
 
 const  usersReducers = (state: usersType = initState, action: any) => {
@@ -56,7 +58,8 @@ const  usersReducers = (state: usersType = initState, action: any) => {
         case 'TOGGLE_IS_FETCHING' :
             return {...state, isFetching: action.isFetching}
         case 'TOGGLE_IS_FOLLOWING_PROGRESS':
-            return {...state, followingInProgress: action.followingInProgress}
+            return {...state,
+                followingInProgress: [...state.followingInProgress.filter()]}
         default:
             return state;
     }

@@ -53,12 +53,14 @@ const Users = (props: UsersPropsType) => {
                                             if (data.resultCode === 0) {
                                                 props.unfollow(u.id);
                                             }
+                                            props.toggleFollowingInProgress(false);
                                         });
 
 
                                 }}>Unfollow</button>
 
-                                : <button onClick={() => {
+                                : <button disabled={props.followingInProgress} onClick={() => {
+                                    props.toggleFollowingInProgress(true);
                                     followUser(u.id)
                                         .then(data => {
                                             if (data.resultCode === 0) {
