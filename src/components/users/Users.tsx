@@ -13,6 +13,8 @@ type UsersPropsType = {
     onPageChanged: any
     follow: any
     unfollow: any
+    followingInProgress: boolean
+    toggleFollowingInProgress: any
 }
 
 const Users = (props: UsersPropsType) => {
@@ -44,7 +46,8 @@ const Users = (props: UsersPropsType) => {
                         </div>
                         <div>
                             {u.followed
-                                ? <button onClick={() => {
+                                ? <button disabled={props.followingInProgress} onClick={() => {
+                                    props.toggleFollowingInProgress(true);
                                     unfollowUser(u.id)
                                         .then(data => {
                                             if (data.resultCode === 0) {
@@ -61,6 +64,7 @@ const Users = (props: UsersPropsType) => {
                                             if (data.resultCode === 0) {
                                                 props.follow(u.id);
                                             }
+                                            props.toggleFollowingInProgress(false);
                                         });
 
                                 }}>Follow</button>}
