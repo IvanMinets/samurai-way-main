@@ -1,13 +1,13 @@
 import React from 'react';
 import {connect} from "react-redux";
-import Users from "./Users";
+import Users from './Users';
 import {
    followThunkCreator, getUsersThunkCreator,
     setCurrentPageAC,
     toggleFollowingInProgressAC,
     unfollowThunkCreator
 } from "../../redux/users-reducer";
-import Preloader from "../common/preloader/preloader";
+import Preloader from "../Common/Preloader/Preloader";
 
 
 interface UsersPropsType {

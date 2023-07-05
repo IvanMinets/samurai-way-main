@@ -1,6 +1,6 @@
 import React from 'react';
 import a from './ProfileInfo.module.css';
-import Preloader from "../../common/preloader/preloader";
+import Preloader from "../../Common/Preloader/Preloader";
 
 type ProfileInfoPropsType = {
     profile: any
