@@ -1,4 +1,4 @@
-import {getUsers} from "../api/api";
+import {followUser, getUsers, unfollowUser} from "../api/api";
 
 export type userLocationType = {
     city: string,
@@ -105,5 +105,26 @@ export const getUsersThunkCreator = (currentPage: any, pageSize: any) => (dispat
         });
 }
 
+export const followThunkCreator = (id: any) => (dispatch: any) => {
+    dispatch(toggleFollowingInProgressAC(true, id))
+    followUser(id)
+        .then(data => {
+            if (data.resultCode === 0) {
+                dispatch(followAC(id));
+            }
+            dispatch(toggleFollowingInProgressAC(false, id));
+        });
+}
+
+export const unfollowThunkCreator = (id: any) => (dispatch: any) => {
+    dispatch(toggleFollowingInProgressAC(true, id));
+    unfollowUser(id)
+        .then(data => {
+            if (data.resultCode === 0) {
+                dispatch(unfollowAC(id));
+            }
+            dispatch(toggleFollowingInProgressAC(false, id));
+        });
+}
 
 export default usersReducers;
