@@ -19,12 +19,12 @@ interface UsersPropsType {
     unfollow: (userId: number) => void
     setUsers: (users: any) => void
     setCurrentPage: (currentPage: any) => void
-    setTotalUsersCount: (totalCount: any) => void
+    setUsersTotalCount: (totalCount: any) => void
     toggleIsFetching: (isFetching: boolean) => void
     isFetching: boolean
     toggleFollowingInProgress: any
     followingInProgress: Array<any>
-    getUsersThunkCreator: any
+    getUsers: any
     totalUsersCount: any
     pageSize: any
     currentPage: any
@@ -33,7 +33,7 @@ interface UsersPropsType {
 class UsersAPIComponent extends React.Component<UsersPropsType> {
 
     componentDidMount() {
-        this.props.getUsersThunkCreator();
+        this.props.getUsers(this.props.currentPage, this.props.pageSize);
         // this.props.toggleIsFetching(true)
         // getUsers(this.props.currentPage, this.props.pageSize)
         //     .then(data => {
@@ -44,13 +44,14 @@ class UsersAPIComponent extends React.Component<UsersPropsType> {
     }
 
     onPageChanged = (pageNumber: any) => {
-        this.props.setCurrentPage(pageNumber)
-        this.props.toggleIsFetching(true)
-        getUsers(pageNumber, this.props.pageSize)
-            .then(data => {
-                this.props.toggleIsFetching(false)
-                this.props.setUsers(data.items)
-            });
+        this.props.getUsers(pageNumber, this.props.pageSize);
+        // this.props.setCurrentPage(pageNumber)
+        // this.props.toggleIsFetching(true)
+        // getUsers(pageNumber, this.props.pageSize)
+        //     .then(data => {
+        //         this.props.toggleIsFetching(false)
+        //         this.props.setUsers(data.items)
+        //     });
     }
 
     render() {
@@ -92,5 +93,5 @@ export default connect(mapStateToProps, {
     setUsersTotalCount: setUsersTotalCountAC,
     toggleIsFetching: toggleIsFetchingAC,
     toggleFollowingInProgress: toggleFollowingInProgressAC,
-    getUsersThunkCreator: getUsersThunkCreator
+    getUsers: getUsersThunkCreator
 })(UsersAPIComponent);
