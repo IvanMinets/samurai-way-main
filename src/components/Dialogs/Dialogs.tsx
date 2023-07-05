@@ -2,8 +2,6 @@ import React, {ChangeEvent} from 'react';
 import s from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {sendMessageAC, updateNewMessageBodyAC} from "../../redux/dialogs-reducer";
-import {StoreType} from "../../redux/store";
 import {Redirect} from "react-router-dom";
 
 

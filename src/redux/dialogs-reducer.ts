@@ -1,5 +1,3 @@
-import React from "react";
-
 export type SendMessageType = ReturnType<typeof sendMessageAC>
 export type UpdateNewMessageType = ReturnType<typeof updateNewMessageBodyAC>
 

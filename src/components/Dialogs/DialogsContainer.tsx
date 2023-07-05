@@ -1,36 +1,13 @@
-import React, {ChangeEvent} from 'react';
 import {sendMessageAC, updateNewMessageBodyAC} from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
+import React from "react";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
-// const DialogsContainer = (props: any) => {
-//     return (
-//         <StoreContext.Consumer>{
-//             (store) => {
-//                 let state = store.getState().dialogsPage;
-//
-//                 const onSendMessageClick = () => {
-//                     store.dispatch(sendMessageAC())
-//                 }
-//
-//                 const onNewMessageChange = (body: any) => {
-//                    store.dispatch(updateNewMessageBodyAC(body))
-//                 }
-//                 return <Dialogs
-//                     sendMessage={onSendMessageClick}
-//                     updateNewMessageBody={onNewMessageChange}
-//                     dialogsPage={state}
-//                 />
-//             }
-//         }
-//         </StoreContext.Consumer>
-//     )
-// }
 
 let mapStateToProps = (state: any) =>{
     return {
         dialogsPage: state.dialogsPage,
-        isAuth: state.auth.isAuth
     }
 }
 let mapDispatchToProps = (dispatch: any) =>{
@@ -39,8 +16,8 @@ let mapDispatchToProps = (dispatch: any) =>{
         sendMessage: ()=>{dispatch(sendMessageAC())}
     }
 }
+let AuthRedirectComponent = withAuthRedirect(Dialogs)
 
-const DialogsContainer = connect(mapStateToProps,mapDispatchToProps) (Dialogs);
-
+const DialogsContainer = connect(mapStateToProps,mapDispatchToProps) (AuthRedirectComponent);
 
 export default DialogsContainer;
