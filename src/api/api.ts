@@ -8,9 +8,6 @@ const instance = axios.create ({
     }
 })
 
-
-
-
 export const usersAPI = {
     getUsers(currentPage: number, pageSize: number) {
         return instance.get(`users?page=${currentPage}&count=${pageSize}`)
@@ -25,10 +22,7 @@ export const usersAPI = {
             .then(response => response.data)
     },
     getProfile(id: any){
-        return instance.get(`https://social-network.samuraijs.com/api/1.0/profile/` + id)
-            .then(response => {
-                this.props.setUserProfile(response.data)
-            })
+        return instance.get(`profile/` + id);
     }
 
 }
