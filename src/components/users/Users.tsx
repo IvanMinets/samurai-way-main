@@ -60,8 +60,8 @@ const Users = (props: UsersPropsType) => {
                                     //     });
                                 }}>Unfollow</button>
 
-                                : <button disabled={props.followingInProgress.some(id=> id === u.id)} onClick={() => {
-                                    props.follow(u.id)
+                                : <button disabled={props.followingInProgress.some(id=> id === u.id)}
+                                          onClick={() => {props.follow(u.id)
                                     // followThunkCreator(u.id)
                                     // props.toggleFollowingInProgress(true, u.id);
                                     // followUser(u.id)
