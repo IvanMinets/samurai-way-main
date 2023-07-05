@@ -4,23 +4,17 @@ import Users from "./Users";
 import {
     followAC, getUsersThunkCreator,
     setCurrentPageAC,
-    setUsersAC,
-    setUsersTotalCountAC, toggleFollowingInProgressAC,
-    toggleIsFetchingAC,
+    toggleFollowingInProgressAC,
     unfollowAC
 } from "../../redux/users-reducer";
-import axios from "axios";
 import Preloader from "../common/preloader/preloader";
-import {getUsers} from "../../api/api";
+
 
 interface UsersPropsType {
     users: Array<any>
     follow: (userId: number) => void
     unfollow: (userId: number) => void
-    setUsers: (users: any) => void
     setCurrentPage: (currentPage: any) => void
-    setUsersTotalCount: (totalCount: any) => void
-    toggleIsFetching: (isFetching: boolean) => void
     isFetching: boolean
     toggleFollowingInProgress: any
     followingInProgress: Array<any>
@@ -34,24 +28,10 @@ class UsersAPIComponent extends React.Component<UsersPropsType> {
 
     componentDidMount() {
         this.props.getUsers(this.props.currentPage, this.props.pageSize);
-        // this.props.toggleIsFetching(true)
-        // getUsers(this.props.currentPage, this.props.pageSize)
-        //     .then(data => {
-        //         this.props.toggleIsFetching(false)
-        //         this.props.setUsers(data.items)
-        //         this.props.setTotalUsersCount(data.totalCount)
-        //     });
     }
 
     onPageChanged = (pageNumber: any) => {
         this.props.getUsers(pageNumber, this.props.pageSize);
-        // this.props.setCurrentPage(pageNumber)
-        // this.props.toggleIsFetching(true)
-        // getUsers(pageNumber, this.props.pageSize)
-        //     .then(data => {
-        //         this.props.toggleIsFetching(false)
-        //         this.props.setUsers(data.items)
-        //     });
     }
 
     render() {
@@ -72,7 +52,7 @@ class UsersAPIComponent extends React.Component<UsersPropsType> {
     }
 }
 
-let mapStateToProps = (state: any) =>  {
+let mapStateToProps = (state: any) => {
     return {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
@@ -88,10 +68,7 @@ let mapStateToProps = (state: any) =>  {
 export default connect(mapStateToProps, {
     follow: followAC,
     unfollow: unfollowAC,
-    setUsers: setUsersAC,
-    setCurrentPage:setCurrentPageAC,
-    setUsersTotalCount: setUsersTotalCountAC,
-    toggleIsFetching: toggleIsFetchingAC,
+    setCurrentPage: setCurrentPageAC,
     toggleFollowingInProgress: toggleFollowingInProgressAC,
     getUsers: getUsersThunkCreator
 })(UsersAPIComponent);
