@@ -2,9 +2,7 @@ import React from 'react';
 import s from "./users.module.css";
 import userPhoto from "../../assets/images/user.jpg";
 import {NavLink} from "react-router-dom";
-import axios from "axios";
-import {followUser, unfollowUser} from "../../api/api";
-import {followThunkCreator, unfollowThunkCreator} from "../../redux/users-reducer";
+
 
 type UsersPropsType = {
     users: Array<any>
@@ -12,10 +10,10 @@ type UsersPropsType = {
     pageSize: any
     currentPage: any
     onPageChanged: any
-    follow: any
-    unfollow: any
     followingInProgress: Array<any>
     toggleFollowingInProgress: any
+    follow: any,
+    unfollow: any
 }
 
 const Users = (props: UsersPropsType) => {
@@ -49,7 +47,6 @@ const Users = (props: UsersPropsType) => {
                             {u.followed
                                 ? <button disabled={props.followingInProgress.some(id=> id === u.id)} onClick={() => {
                                     props.unfollow(u.id)
-                                    // unfollowThunkCreator(u.id)
                                     // props.toggleFollowingInProgress(true, u.id);
                                     // unfollowUser(u.id)
                                     //     .then(data => {
@@ -60,8 +57,8 @@ const Users = (props: UsersPropsType) => {
                                     //     });
                                 }}>Unfollow</button>
 
-                                : <button disabled={props.followingInProgress.some(id=> id === u.id)}
-                                          onClick={() => {props.follow(u.id)
+                                : <button disabled={props.followingInProgress.some(id=> id === u.id)} onClick={() => {
+                                    props.follow(u.id)
                                     // followThunkCreator(u.id)
                                     // props.toggleFollowingInProgress(true, u.id);
                                     // followUser(u.id)

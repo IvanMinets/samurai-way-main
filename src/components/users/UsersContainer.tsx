@@ -2,10 +2,10 @@ import React from 'react';
 import {connect} from "react-redux";
 import Users from "./Users";
 import {
-    followAC, getUsersThunkCreator,
+   followThunkCreator, getUsersThunkCreator,
     setCurrentPageAC,
     toggleFollowingInProgressAC,
-    unfollowAC
+    unfollowThunkCreator
 } from "../../redux/users-reducer";
 import Preloader from "../common/preloader/preloader";
 
@@ -31,6 +31,7 @@ class UsersAPIComponent extends React.Component<UsersPropsType> {
     }
 
     onPageChanged = (pageNumber: any) => {
+        this.props.setCurrentPage(pageNumber);
         this.props.getUsers(pageNumber, this.props.pageSize);
     }
 
@@ -66,9 +67,9 @@ let mapStateToProps = (state: any) => {
 
 
 export default connect(mapStateToProps, {
-    follow: followAC,
-    unfollow: unfollowAC,
     setCurrentPage: setCurrentPageAC,
     toggleFollowingInProgress: toggleFollowingInProgressAC,
-    getUsers: getUsersThunkCreator
+    getUsers: getUsersThunkCreator,
+    follow: followThunkCreator,
+    unfollow: unfollowThunkCreator
 })(UsersAPIComponent);

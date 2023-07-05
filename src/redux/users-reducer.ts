@@ -1,4 +1,4 @@
-import {followUser, getUsers, unfollowUser} from "../api/api";
+import {usersAPI} from "../api/api";
 
 export type userLocationType = {
     city: string,
@@ -97,7 +97,7 @@ export const toggleFollowingInProgressAC = (isFetching: boolean, userId: any) =>
 export const getUsersThunkCreator = (currentPage: any, pageSize: any) => (dispatch: any) => {
     dispatch(toggleIsFetchingAC(true));
 
-    getUsers(currentPage, pageSize)
+    usersAPI.getUsers(currentPage, pageSize)
         .then(data => {
             dispatch(toggleIsFetchingAC(false))
             dispatch(setUsersAC(data.items))
@@ -107,7 +107,7 @@ export const getUsersThunkCreator = (currentPage: any, pageSize: any) => (dispat
 
 export const followThunkCreator = (id: any) => (dispatch: any) => {
     dispatch(toggleFollowingInProgressAC(true, id))
-    followUser(id)
+    usersAPI.followUser(id)
         .then(data => {
             if (data.resultCode === 0) {
                 dispatch(followAC(id));
@@ -118,7 +118,7 @@ export const followThunkCreator = (id: any) => (dispatch: any) => {
 
 export const unfollowThunkCreator = (id: any) => (dispatch: any) => {
     dispatch(toggleFollowingInProgressAC(true, id));
-    unfollowUser(id)
+    usersAPI.unfollowUser(id)
         .then(data => {
             if (data.resultCode === 0) {
                 dispatch(unfollowAC(id));
