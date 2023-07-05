@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from "react-redux";
 import Users from "./Users";
 import {
-    followAC,
+    followAC, getUsersThunkCreator,
     setCurrentPageAC,
     setUsersAC,
     setUsersTotalCountAC, toggleFollowingInProgressAC,
@@ -24,6 +24,7 @@ interface UsersPropsType {
     isFetching: boolean
     toggleFollowingInProgress: any
     followingInProgress: Array<any>
+    getUsersThunkCreator: any
     totalUsersCount: any
     pageSize: any
     currentPage: any
@@ -32,13 +33,14 @@ interface UsersPropsType {
 class UsersAPIComponent extends React.Component<UsersPropsType> {
 
     componentDidMount() {
-        this.props.toggleIsFetching(true)
-        getUsers(this.props.currentPage, this.props.pageSize)
-            .then(data => {
-                this.props.toggleIsFetching(false)
-                this.props.setUsers(data.items)
-                this.props.setTotalUsersCount(data.totalCount)
-            });
+        this.props.getUsersThunkCreator();
+        // this.props.toggleIsFetching(true)
+        // getUsers(this.props.currentPage, this.props.pageSize)
+        //     .then(data => {
+        //         this.props.toggleIsFetching(false)
+        //         this.props.setUsers(data.items)
+        //         this.props.setTotalUsersCount(data.totalCount)
+        //     });
     }
 
     onPageChanged = (pageNumber: any) => {
@@ -89,5 +91,6 @@ export default connect(mapStateToProps, {
     setCurrentPage:setCurrentPageAC,
     setUsersTotalCount: setUsersTotalCountAC,
     toggleIsFetching: toggleIsFetchingAC,
-    toggleFollowingInProgress: toggleFollowingInProgressAC
+    toggleFollowingInProgress: toggleFollowingInProgressAC,
+    getUsersThunkCreator: getUsersThunkCreator
 })(UsersAPIComponent);
