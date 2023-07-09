@@ -26,7 +26,7 @@ interface UsersPropsType {
 
 class UsersAPIComponent extends React.Component<UsersPropsType> {
 
-    componentDidMount() {
+    componentDidMount() { 
         this.props.getUsers(this.props.currentPage, this.props.pageSize);
     }
 
