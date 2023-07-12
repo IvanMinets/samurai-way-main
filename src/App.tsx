@@ -8,11 +8,9 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import {Login} from "./components/Login/Login";
 
-type AppPropsType = {
 
-}
 
-const App = (props: AppPropsType) => {
+const App = (props: any) => {
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
