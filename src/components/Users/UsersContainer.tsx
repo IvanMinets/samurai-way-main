@@ -8,6 +8,8 @@ import {
     unfollowThunkCreator
 } from "../../redux/users-reducer";
 import Preloader from "../Common/Preloader/Preloader";
+import {compose} from "redux";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 
 interface UsersPropsType {
@@ -66,10 +68,11 @@ let mapStateToProps = (state: any) => {
 }
 
 
-export default connect(mapStateToProps, {
+
+export default compose(withAuthRedirect,connect(mapStateToProps, {
     setCurrentPage: setCurrentPageAC,
     toggleFollowingInProgress: toggleFollowingInProgressAC,
     getUsers: getUsersThunkCreator,
     follow: followThunkCreator,
     unfollow: unfollowThunkCreator
-})(UsersAPIComponent);
+}))(UsersAPIComponent)
