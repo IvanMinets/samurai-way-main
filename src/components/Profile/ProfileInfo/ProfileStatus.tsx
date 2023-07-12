@@ -11,12 +11,14 @@ class ProfileStatus extends React.Component<ProfileStatusPropsType> {
     }
     activateEditMode() {
         this.setState( {
-
+            editMode: true
         })
-        this.state.editMode = true;
-        this.forceUpdate();
     }
-
+    deactivateEditMode() {
+        this.setState( {
+            editMode: true
+        })
+    }
     render() {
         return (
             <>
@@ -27,7 +29,7 @@ class ProfileStatus extends React.Component<ProfileStatusPropsType> {
                 }
                 {this.state.editMode &&
                     <div>
-                        <input type="text" value={this.props.value}/>
+                        <input onBlur={this.deactivateEditMode.bind(this)} type="text" value={this.props.value}/>
                     </div>
                 }
             </>
