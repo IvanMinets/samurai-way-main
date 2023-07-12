@@ -12,12 +12,12 @@ class ProfileStatus extends React.Component<ProfileStatusPropsType> {
     activateEditMode() {
         this.setState( {
             editMode: true
-        })
+        });
     }
     deactivateEditMode() {
         this.setState( {
-            editMode: true
-        })
+            editMode: false
+        });
     }
     render() {
         return (
