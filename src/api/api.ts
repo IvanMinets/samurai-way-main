@@ -22,7 +22,12 @@ export const usersAPI = {
             .then(response => response.data)
     },
     getProfile(id: any){
+        return profileAPI.getProfile(id)
+    }
+}
+
+export const profileAPI = {
+    getProfile(id: any){
         return instance.get(`profile/` + id);
     }
-
 }
