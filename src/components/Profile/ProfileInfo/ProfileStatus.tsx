@@ -10,6 +10,9 @@ class ProfileStatus extends React.Component<ProfileStatusPropsType> {
         editMode: false
     }
     activateEditMode() {
+        this.setState( {
+
+        })
         this.state.editMode = true;
         this.forceUpdate();
     }
