@@ -13,14 +13,16 @@ class ProfileStatus extends React.Component<ProfileStatusPropsType> {
     render() {
         return (
             <>
-                {this.state.editMode &&
+                {!this.state.editMode &&
                     <div>
                         <span>{this.props.status}</span>
                     </div>
                 }
-                <div>
-                    <input type="text" value={this.props.value}/>
-                </div>
+                {this.state.editMode &&
+                    <div>
+                        <input type="text" value={this.props.value}/>
+                    </div>
+                }
             </>
 
         );
