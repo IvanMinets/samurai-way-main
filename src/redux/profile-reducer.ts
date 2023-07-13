@@ -1,4 +1,4 @@
-import {usersAPI} from "../api/api";
+import {profileAPI, usersAPI} from "../api/api";
 
 type PostType = {
     id: number
@@ -8,8 +8,9 @@ type PostType = {
 export type AddPostActionType = ReturnType<typeof addPostAC>
 export type UpdateNewPostTextType = ReturnType<typeof updateNewPostTextAC>
 export type SetUserProfileType = ReturnType<typeof setUserProfileAC>
+export type SetStatusType = ReturnType<typeof setStatusAC>
 
-type ActionsTypes = AddPostActionType | UpdateNewPostTextType | SetUserProfileType;
+type ActionsTypes = AddPostActionType | UpdateNewPostTextType | SetUserProfileType | SetStatusType;
 
 let initState = {
     posts: [
@@ -38,6 +39,11 @@ const profileReducer = (state: any = initState, action: ActionsTypes) =>  {
                 ...state,
                 newPostText: action.newText
             };
+        case 'SET_STATUS':
+            return {
+                ...state,
+                status: action.status
+            };
         case 'SET_USER_PROFILE':
             return {
                 ...state,
@@ -64,12 +70,33 @@ export const setUserProfileAC = (profile: any) => {
         profile: profile
     } as const
 }
+export const setStatusAC = (status: any) => {
+    return {
+        type: 'SET_STATUS',
+        status: status
+    } as const
+}
 
-export const getUserProfile = (userId: any) => (dispatch: any) => {
+
+export const getUserProfileTC = (userId: any) => (dispatch: any) => {
     usersAPI.getProfile(userId)
         .then(response => {
             dispatch(setUserProfileAC(response.data));
         })
 }
+
+export const getStatusTC = (id: any) => (dispatch: any) => {
+    profileAPI.getStatus(id)
+        .then(response => {
+            dispatch(setStatusAC(response.data));
+        })
+}
+export const updateStatusTC = (status: any) => (dispatch: any) => {
+    profileAPI.updateStatus(status)
+        .then(response => {
+            dispatch(setStatusAC(response.data));
+        })
+}
+
 
 export default profileReducer;
