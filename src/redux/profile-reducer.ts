@@ -21,7 +21,7 @@ let initState = {
     profile: null
 }
 
-const profileReducer = (state: any = initState, action: ActionsTypes) =>  {
+const profileReducer = (state: any = initState, action: ActionsTypes) => {
     switch (action.type) {
         case 'ADD-POST':
             let newPost: PostType = {
@@ -94,7 +94,9 @@ export const getStatusTC = (id: any) => (dispatch: any) => {
 export const updateStatusTC = (status: any) => (dispatch: any) => {
     profileAPI.updateStatus(status)
         .then(response => {
-            dispatch(setStatusAC(response.data));
+            if (response.data.resultCode === 0) {
+                dispatch(setStatusAC(status));
+            }
         })
 }
 

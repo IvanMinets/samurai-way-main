@@ -5,7 +5,9 @@ import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
 
 type ProfilePropsType = {
-    profile: any
+    profile: any,
+    status: any,
+    updateStatus: any
 }
 
 const Profile = (props: ProfilePropsType) => {
