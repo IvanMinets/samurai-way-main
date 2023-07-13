@@ -14,8 +14,8 @@ const Profile = (props: ProfilePropsType) => {
 
     return (
         <div className={s.hello}>
-            <ProfileInfo profile={props.profile}/>
-            <MyPostsContainer  />
+            <ProfileInfo profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
+            <MyPostsContainer/>
         </div>
     )
 }
