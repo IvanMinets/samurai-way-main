@@ -1,4 +1,5 @@
 import React from 'react'
+import {reduxForm} from "redux-form";
 
 export const LoginForm = (props: any) => {
     return (
@@ -7,7 +8,7 @@ export const LoginForm = (props: any) => {
             <input placeholder={"login"} type="text"/>
         </div>
         <div>
-            <input placeholder={"login"} type="text"/>
+            <input placeholder={"password"} type="text"/>
         </div>
         <div>
             <input type="checkbox"/> remember me
@@ -19,6 +20,9 @@ export const LoginForm = (props: any) => {
     )
 }
 
+export const LoginReduxForm = reduxForm({
+    form: 'login'
+})
 
 export const Login = (props: any) => {
     return <div>
