@@ -27,7 +27,14 @@ class ProfileStatus extends React.Component<ProfileStatusPropsType> {
             status: e.currentTarget.value
         })
     }
-
+    onEnterKeyHandler = (e: any) => {
+        if (e.key === 'Enter') {
+            this.setState({
+                editMode: false
+            });
+            this.props.updateStatus(this.state.status)
+        }
+    }
     componentDidUpdate(prevProps: Readonly<ProfileStatusPropsType>, prevState: Readonly<{}>, snapshot?: any) {
         if (prevProps.status !== this.props.status)
             this.setState({
@@ -47,7 +54,7 @@ class ProfileStatus extends React.Component<ProfileStatusPropsType> {
                 {this.state.editMode &&
                     <div>
                         <input onBlur={this.deactivateEditMode} autoFocus={true} value={this.state.status}
-                               onChange={this.onStatusChange}/>
+                               onChange={this.onStatusChange} onKeyPress={this.onEnterKeyHandler}/>
                     </div>
                 }
             </>
