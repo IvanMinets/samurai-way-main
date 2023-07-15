@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Login = () => {
+export const Login = (props: any) => {
     return <div>
         <h1>Login</h1>
         <form action="">
@@ -14,7 +14,7 @@ export const Login = () => {
                 <input type="checkbox"/> remember me
             </div>
             <div>
-                <input placeholder={"login"} type="text"/>
+                <button>Login</button>
             </div>
         </form>
     </div>
