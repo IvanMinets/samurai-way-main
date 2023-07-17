@@ -3,7 +3,7 @@ import s from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import {Redirect} from "react-router-dom";
-import {Field} from "redux-form";
+import {Field, reduxForm} from "redux-form";
 
 
 type DialogsPropsType = {
@@ -30,6 +30,9 @@ const Dialogs = (props: DialogsPropsType) => {
         let body = e.currentTarget.value;
         props.updateNewMessageBody(body);
     }
+    let addNewMessage = () => {
+
+    }
 
     if (!props.isAuth) return <Redirect to={"/login"}/>
 
@@ -40,7 +43,7 @@ const Dialogs = (props: DialogsPropsType) => {
             </div>
             <div className={s.messages}>
                 <div>{messagesElements}</div>
-
+            <AddMessageFormRedux onSubmit={addNewMessage}/>
             </div>
         </div>
     )
@@ -58,5 +61,6 @@ export const AddMessageForm = (props: any) => {
         </form>
     )
 }
+const AddMessageFormRedux = reduxForm({form: 'dialogAddMessageForm'})(AddMessageForm);
 
 export default Dialogs;
