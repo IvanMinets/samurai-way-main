@@ -19,18 +19,16 @@ let initState = {
         {id: 4, message: "Yo"},
         {id: 5, message: "Yo"},
         {id: 6, message: "Yo"}
-    ],
-    newMessageBody: ''
+    ]
 }
 
 export const dialogsReducer = (state: any = initState, action: ActionsTypes) => {
     let stateCopy;
     switch (action.type) {
         case 'SEND-MESSAGE':
-            let body = state.newMessageBody;
+            let body = action.newMessageBody;
             stateCopy = {
                 ...state,
-                newMessageBody: '',
                 messages: [...state.messages,{id:6, message: body}]
             };
             return stateCopy;
@@ -46,9 +44,10 @@ export const dialogsReducer = (state: any = initState, action: ActionsTypes) => 
 }
 
 
-export const sendMessageAC = () => {
+export const sendMessageAC = (newMessageBody: string) => {
     return {
-        type: 'SEND-MESSAGE'
+        type: 'SEND-MESSAGE',
+        newMessageBody: newMessageBody
     } as const
 }
 export const updateNewMessageBodyAC = (body: string) => {

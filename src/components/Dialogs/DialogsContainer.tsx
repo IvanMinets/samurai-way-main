@@ -14,7 +14,7 @@ let mapStateToProps = (state: any) =>{
 let mapDispatchToProps = (dispatch: any) =>{
     return {
         updateNewMessageBody: (body: string)=>{dispatch(updateNewMessageBodyAC(body))},
-        sendMessage: ()=>{dispatch(sendMessageAC())}
+        sendMessage: (newMessageBody: any)=>{dispatch(sendMessageAC(newMessageBody))}
     }
 }
 
