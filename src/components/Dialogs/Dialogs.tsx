@@ -51,13 +51,9 @@ export const AddMessageForm = (props: any) => {
         <form onSubmit={props.handleSubmit}>
             <div>
                 <Field component={"textarea"} name={"newMessageBody"} placeholder={"Enter your message"}/>
-                <textarea value={newMessageBody}
-                          onChange={onNewMessageChange}
-                          placeholder='Enter your message'>
-                </textarea>
             </div>
             <div>
-                <button onClick={onSendMessageClick}>Send</button>
+                <button>Send</button>
             </div>
         </form>
     )
