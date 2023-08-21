@@ -1,13 +1,14 @@
 import React from 'react';
 import a from './MyPosts.module.css';
 import Post from "./Post/Post";
+import {Field, reduxForm} from "redux-form";
 
 
 type MyPostsPropsType = {
     posts: { id: number, message: string, likesCount: number }[]
     newPostText: string
     updateNewPostText: (text: string) => void
-    addPost: () => void
+    addPost: (values: any) => void
 }
 
 const MyPosts = (props: MyPostsPropsType) => {
@@ -16,11 +17,8 @@ const MyPosts = (props: MyPostsPropsType) => {
 
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 
-    const onAddPost = () => {
-        props.addPost();
-        if (newPostElement.current) {
-            newPostElement.current.value = '';
-        }
+    const onAddPost = (values: any) => {
+        props.addPost(values.newPostText);
     }
     const onPostChange = () => {
         let text = newPostElement.current ? newPostElement.current.value : "";
@@ -31,18 +29,25 @@ const MyPosts = (props: MyPostsPropsType) => {
     return (
         <div className={a.postsBlock}>
             <h3>My posts</h3>
-            <div>
-                <div>
-                    <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}/>
-                </div>
-                <div>
-                    <button onClick={onAddPost}>Add post</button>
-                </div>
-            </div>
+            <AddNewPostForm onSubmuit={onAddPost}/>
             <div className={a.posts}>
                 {postsElements}
             </div>
         </div>
     )
 }
+
+function AddNewPostForm (props: any) {
+    return <form onSubmit={props.handleSubmit}>
+        <div>
+            <textarea onChange={props.onPostChange} ref={props.newPostElement} value={props.newPostText}/>
+            <Field name={"newPostText"}/>
+        </div>
+        <div>
+            <button>Add post</button>
+        </div>
+    </form>
+}
+const AddNewPostFormRedux = reduxForm({form: "ProfileAddNewPostForm"})(AddNewPostForm);
+
 export default MyPosts;

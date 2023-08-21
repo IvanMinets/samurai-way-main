@@ -1,4 +1,4 @@
-import profileReducer, {AddPostActionType, UpdateNewPostTextType} from "./profile-reducer";
+import profileReducer, {AddPostActionType} from "./profile-reducer";
 import dialogsReducer, {SendMessageType, UpdateNewMessageType} from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
 
@@ -37,7 +37,7 @@ export type StoreType = {
 }
 
 
-export type ActionsTypes = AddPostActionType | UpdateNewPostTextType | UpdateNewMessageType | SendMessageType;
+export type ActionsTypes = AddPostActionType | UpdateNewMessageType | SendMessageType;
 
 // let store: StoreType = {
 //     _state: {

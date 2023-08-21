@@ -1,4 +1,4 @@
-import {addPostAC, updateNewPostTextAC} from "../../../redux/profile-reducer";
+import {addPostAC} from "../../../redux/profile-reducer";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
 
@@ -33,8 +33,7 @@ let mapStateToProps = (state: any)=>{
 }
 let mapDispatchToProps = (dispatch: any) =>{
     return {
-        addPost: ()=>{dispatch(addPostAC())},
-        updateNewPostText: (text:string)=>{dispatch(updateNewPostTextAC(text))}
+        addPost: (newPostText: string)=>{dispatch(addPostAC(newPostText))},
     }
 }
 
