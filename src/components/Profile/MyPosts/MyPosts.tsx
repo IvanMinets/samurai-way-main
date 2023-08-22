@@ -2,6 +2,7 @@ import React from 'react';
 import a from './MyPosts.module.css';
 import Post from "./Post/Post";
 import {Field, reduxForm} from "redux-form";
+import {required} from "../../../utils/validators";
 
 
 type MyPostsPropsType = {
@@ -36,7 +37,7 @@ export const AddNewPostForm = (props: any) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field name={"newPostText"} component={"textarea"}/>
+                <Field name={"newPostText"} component={"textarea"} validate={[required]}/>
             </div>
             <div>
                 <button>Add post</button>
