@@ -11,7 +11,7 @@ class ProfileContainer extends React.Component<any> {
     componentDidMount() {
         let userId = this.props.match.params.userId;
         if (!userId) {
-            userId = 2;
+            userId = 3;
         }
         this.props.getUserProfile(userId);
         setTimeout(()=>{
