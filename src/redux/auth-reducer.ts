@@ -35,5 +35,13 @@ export const getAuthUserDataTC = () => (dispatch: any) => {
             }
         });
 }
+export const loginTC = (email: string, password: string, rememberMe: boolean) => (dispatch: any) => {
+    authAPI.login(email, password, rememberMe)
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(setAuthUserDataAC(response.data.data.id, response.data.data.email, response.data.data.login));
+            }
+        });
+}
 
 export default authReducer;
