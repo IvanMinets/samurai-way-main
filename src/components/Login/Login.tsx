@@ -4,6 +4,7 @@ import {Input} from "../Common/FormsControls/FormsControls";
 import {required} from "../../utils/validators";
 import {Redirect} from "react-router-dom";
 import {LoginPropsType} from "./LoginContainer";
+import style from "./../Common/FormsControls/FormsControls.module.css"
 
 export const LoginForm = (props: any) => {
     return (
@@ -17,6 +18,9 @@ export const LoginForm = (props: any) => {
             </div>
             <div>
                 <Field component={Input} name={"rememberMe"} type="checkbox"/> remember me
+            </div>
+            <div className={style.formSummaryError}>
+                ERROR
             </div>
             <div>
                 <button>Login</button>
