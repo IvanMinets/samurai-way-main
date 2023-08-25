@@ -1,7 +1,8 @@
 import React from 'react';
 import a from './ProfileInfo.module.css';
 import Preloader from "../../Common/Preloader/Preloader";
-import ProfileStatus from "./ProfileStatus"
+import {ProfileStatus} from "./ProfileStatus";
+
 
 type ProfileInfoPropsType = {
     profile: any
