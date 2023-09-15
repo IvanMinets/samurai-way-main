@@ -66,20 +66,20 @@ export const setStatusAC = (status: any) => {
 }
 
 
-export const getUserProfileTC = (userId: any) => (dispatch: any) => {
+export const getUserProfileTC = (userId: number) => (dispatch: any) => {
     usersAPI.getProfile(userId)
         .then(response => {
             dispatch(setUserProfileAC(response.data));
         })
 }
 
-export const getStatusTC = (id: any) => (dispatch: any) => {
+export const getStatusTC = (id: number) => (dispatch: any) => {
     profileAPI.getStatus(id)
         .then(response => {
             dispatch(setStatusAC(response.data));
         })
 }
-export const updateStatusTC = (status: any) => (dispatch: any) => {
+export const updateStatusTC = (status: string) => (dispatch: any) => {
     profileAPI.updateStatus(status)
         .then(response => {
             if (response.data.resultCode === 0) {
